@@ -1,0 +1,114 @@
+#!/bin/bash
+
+# Function to execute tasks
+execute_task() {
+    case $1 in
+        1) update_packages ;;
+        2) monitor_system_resources ;;
+        3) backup_configuration ;;
+        4) user_management ;;
+        5) log_rotation ;;
+        6) firewall_configuration ;;
+        7) security_updates ;;
+        8) service_monitoring ;;
+        9) disk_space_management ;;
+        10) automated_tasks ;;
+        *) echo "Invalid task number" ;;
+    esac
+}
+
+# Function to update packages
+update_packages() {
+    echo "Executing task: Update Packages"
+    sudo apt update
+    sudo apt upgrade -y
+}
+
+# Function to monitor system resources
+monitor_system_resources() {
+    echo "Executing task: Monitor System Resources"
+    top -bn 1
+    free -m
+    df -h
+}
+
+# Function to backup configuration
+backup_configuration() {
+    echo "Executing task: Backup Configuration"
+    # Example code for backup configuration
+    # rsync -av /etc/ /backup/
+}
+
+# Function for user management
+user_management() {
+    echo "Executing task: User Management"
+    # Example code for user management
+    # adduser newuser
+}
+
+# Function for log rotation
+log_rotation() {
+    echo "Executing task: Log Rotation"
+    # Example code for log rotation
+    # logrotate /etc/logrotate.conf
+}
+
+# Function for firewall configuration
+firewall_configuration() {
+    echo "Executing task: Firewall Configuration"
+    # Example code for firewall configuration
+    # ufw allow ssh
+}
+
+# Function for security updates
+security_updates() {
+    echo "Executing task: Security Updates"
+    # Example code for security updates
+    # apt-get update
+    # apt-get dist-upgrade -y
+}
+
+# Function for service monitoring
+service_monitoring() {
+    echo "Executing task: Service Monitoring"
+    # Example code for service monitoring
+    # systemctl status apache2
+}
+
+# Function for disk space management
+disk_space_management() {
+    echo "Executing task: Disk Space Management"
+    # Example code for disk space management
+    # du -sh /var
+}
+
+# Function for automated tasks
+automated_tasks() {
+    echo "Executing task: Automated Tasks"
+    # Example code for automated tasks
+    # crontab -e
+}
+
+# Main program
+echo "Select a task:"
+echo "1. Update Packages"
+echo "2. Monitor System Resources"
+echo "3. Backup Configuration"
+echo "4. User Management"
+echo "5. Log Rotation"
+echo "6. Firewall Configuration"
+echo "7. Security Updates"
+echo "8. Service Monitoring"
+echo "9. Disk Space Management"
+echo "10. Automated Tasks"
+
+# Prompt user for task selection
+while true; do
+    read -p "Enter task number: " task
+    if [[ $task =~ ^[0-9]+$ ]]; then
+        execute_task $task
+        break
+    else
+        echo "Invalid input. Please enter a number."
+    fi
+done
