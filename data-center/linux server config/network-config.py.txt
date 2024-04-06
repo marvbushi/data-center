@@ -1,0 +1,68 @@
+import subprocess
+
+# Function to execute networking tasks
+def execute_task(task):
+    if task == "1":
+        subprocess.run(["ifconfig"])
+    elif task == "2":
+        subprocess.run(["nano", "/etc/resolv.conf"])
+    elif task == "3":
+        subprocess.run(["ip", "route"])
+    elif task == "4":
+        subprocess.run(["iptables", "-L"])
+    elif task == "5":
+        subprocess.run(["tcpdump", "-i", "eth0"])  # Change interface as needed
+    elif task == "6":
+        subprocess.run(["systemctl", "status", "networking.service"])
+    elif task == "7":
+        subprocess.run(["ping", "8.8.8.8"])
+    elif task == "8":
+        subprocess.run(["nano", "/etc/network/interfaces"])
+    elif task == "9":
+        subprocess.run(["ip", "link", "show"])
+    elif task == "10":
+        subprocess.run(["openvpn", "--config", "client.ovpn"])  # Replace with actual OpenVPN config file
+
+# Function to validate user login
+def validate_login(username, password):
+    with open("users.txt", "r") as file:
+        for line in file:
+            stored_username, stored_password = line.strip().split(":")
+            if username == stored_username and password == stored_password:
+                return True
+        return False
+
+# Main function
+def main():
+    # Prompt user for login
+    print("Welcome to the Networking Tasks Script!")
+    username = input("Enter your username: ")
+    password = input("Enter your password: ")
+
+    if not validate_login(username, password):
+        print("Invalid username or password.")
+        return
+
+    # Prompt user to select task
+    print("\nSelect a networking task:")
+    print("1. Configure IP addresses")
+    print("2. Configure DNS")
+    print("3. Configure routing")
+    print("4. Configure firewall rules")
+    print("5. Monitor network traffic")
+    print("6. Configure network services")
+    print("7. Troubleshoot network connectivity")
+    print("8. Configure network interfaces")
+    print("9. Configure VLANs")
+    print("10. Configure VPNs")
+
+    task_choice = input("Enter the number of the task: ")
+
+    # Check for valid input
+    if task_choice.isdigit() and 1 <= int(task_choice) <= 10:
+        execute_task(task_choice)
+    else:
+        print("Invalid input. Please enter a number between 1 and 10.")
+
+if __name__ == "__main__":
+    main()
